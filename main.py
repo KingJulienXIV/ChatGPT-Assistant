@@ -25,7 +25,7 @@ def generate_response(prompt: str) -> str:
 
 
 def main():
-    prompt = """
+    CHAT_PROMPT = """
         Dr. Vitor Botazzi is available on Tuesdays and Thursdays.
         The following is a conversation with an AI assistant. 
         The assistant is helpful, creative, clever, and very friendly.\n
@@ -35,6 +35,15 @@ def main():
         reply with whether Dr. Botazzi is available on that day.\n\n
         Ai:
         """
+    
+    INFO_PROMPT = """
+        I am a highly intelligent question answering bot. If you ask me a 
+        question that is rooted in truth, I will give you the answer. 
+        If you ask me a question that is nonsense, trickery, or has no clear 
+        answer, I will respond with "Unknown".
+        """
+
+    prompt = CHAT_PROMPT
   
     # conversation with chatGPT
     text_message = ""
@@ -52,12 +61,14 @@ def main():
     
     
     # telling chatGPT to extract info from conversation
-    conversation = prompt.split("day.\n\n")[1]
+    conversation = prompt.split(CHAT_PROMPT)[1]
 
     INFO = ["name", "email", "mobile"]
 
-    get_student_info_prompt = "Tell me the Student's {} from this conversation:\n\n" + conversation
- 
+    get_student_info_prompt = (
+        INFO_PROMPT + "Q: What is the Student's {} from this conversation:\n\n" 
+        + conversation)
+    
     guest_name = generate_response(get_student_info_prompt.format(INFO[0]))
     guest_email = generate_response(get_student_info_prompt.format(INFO[1]))
     guest_mobile = generate_response(get_student_info_prompt.format(INFO[2]))
