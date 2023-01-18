@@ -1,10 +1,19 @@
+"""
+This code was created/reused for the purpose of a code interview for a WIL 
+internship at Watkins Steel/Holovision. The main goal is to experiment with 
+ChatGPT APIs and evaluate the students' proficiency in Python.
+
+Author: Marjet Garcia
+
+External Supervisor: Dr. Vitor Bottazzi
+"""
+
 import os
 import openai
 
 
 # personal api key goes here
-with open(r"C:\Users\Marjet\Documents\HoloVision\api_key", "r") as f:
-  openai.api_key = f.read()
+openai.api_key = ""
 
 
 def generate_response(prompt: str) -> str:
